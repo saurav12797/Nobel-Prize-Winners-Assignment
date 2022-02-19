@@ -1,0 +1,19 @@
+@import "src/styles/variables";
+
+.navbar {
+  height: 100px;
+  background-color: rgb(30, 28, 28);
+  display: flex;
+  align-items: center;
+  padding: 1rem;
+  .navbar__logo img {
+    object-fit: contain;
+    width: 85px;
+    margin-top: 5px;
+  }
+  .navbar__content-text {
+    margin: 0 auto;
+    font-size: 3rem;
+    color: $text-golden;
+  }
+}

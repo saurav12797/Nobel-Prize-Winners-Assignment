@@ -1,0 +1,38 @@
+/* taken root font size as 1rem =10px */
+.card {
+  width: 100%;
+  background-color: yellow;
+  display: flex;
+  flex-wrap: wrap;
+
+  @media (max-width: 976px) {
+    justify-content: center;
+  }
+
+  .card__container {
+    height: 18rem;
+    width: 18rem;
+    background-color: aqua;
+    margin: 2rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    .card__content {
+      button {
+        margin-top: 3rem;
+        background-color: lightcoral;
+        color: white;
+        border: none;
+        padding: 1rem;
+        border-radius: 8px;
+      }
+      button:hover {
+        background-color: white;
+        color: lightcoral;
+        cursor: pointer;
+        transition: 0.5s ease-out;
+      }
+    }
+  }
+}
