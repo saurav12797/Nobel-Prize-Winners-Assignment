@@ -32,6 +32,7 @@ const NobelPrizeWinnersService = () => {
     fetchNoblePrizeWinnersData,
     setPrizeWinners,
     loading,
+    setloading,
   };
 };
 

@@ -12,57 +12,51 @@ interface Options {
 }
 
 const NobelPrizeWinners = () => {
-  const { fetchNoblePrizeWinnersData, loading, prizeWinners, setPrizeWinners } =
-    NobelPrizeWinnersService();
-  const [option, setOption] = useState<Options[]>([]);
+  const {
+    fetchNoblePrizeWinnersData,
+    loading,
+    prizeWinners,
+    setPrizeWinners,
+    setloading,
+  } = NobelPrizeWinnersService();
+
+  const [option, setOption] = useState<(string | undefined)[]>([]);
+
   useEffect(() => {
     fetchNoblePrizeWinnersData(() => {});
   }, []);
-  const handleChange = () => {
-    // const options = prizeWinners
-    //   .map(({ category }) => ({
-    //     label: category,
-    //     key: category,
-    //     value: category,
-    //   }))
-    //   .filter((cat, index, arr) => arr.indexOf(cat) == index)
-    //   .sort();
-
-    const unique = prizeWinners
+  const handleFilter = () => {
+    const uniqueValue = prizeWinners
       .map((p) => p.category)
       .filter((categ, index, arr) => arr.indexOf(categ) == index)
       .sort();
-    const opt = unique.map((val, index) => [
-      ...option,
-      { label: val, value: index },
-    ]);
-    // setOption(opt);
+
+    setOption(uniqueValue);
   };
-  const handleFilter = (option?: string) => {
-    console.log(option);
-    const filteredValue = prizeWinners.filter((val, index) => {
-      return val.category === option;
+  const handleChange = (value: any) => {
+    console.log(value);
+    setloading(true);
+
+    const filter = prizeWinners.filter((prize, index) => {
+      return prize.category === value;
     });
-    console.log({ filteredValue });
-    setPrizeWinners(filteredValue);
+    console.log({ filter });
+    setPrizeWinners(filter);
+    setloading(false);
   };
 
   return (
     <div>
       <h1>Nobel Winners</h1>
-      {/* <select value={option} onClick={handleChange} placeholder="Select">
-        {option?.map((opt, index) => {
-          return <option onChange={() => handleFilter(opt)}>{opt} </option>;
-        })}
-      </select> */}
       <Select
-        onClick={handleChange}
+        onClick={handleFilter}
         placeholder="select"
         style={{ width: 120 }}
         onChange={handleChange}
-        options={option}
+        options={option.map((val, index) => {
+          return { label: val, value: val };
+        })}
       ></Select>
-
       <Card />
     </div>
   );
