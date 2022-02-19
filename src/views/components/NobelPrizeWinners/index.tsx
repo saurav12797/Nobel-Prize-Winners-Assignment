@@ -3,13 +3,8 @@ import { Card } from "../Card";
 import NobelPrizeWinnersService from "../../../services/nobelPrizeWinners.service";
 
 import { Select } from "antd";
-
-const { Option } = Select;
-
-interface Options {
-  label: string;
-  value: string;
-}
+import { PrizeWinnersModel } from "../../../Models/PrizeWinners/prizeWinners.model";
+import "./nobel-prize-winners.scss";
 
 const NobelPrizeWinners = () => {
   const {
@@ -20,44 +15,72 @@ const NobelPrizeWinners = () => {
     setloading,
   } = NobelPrizeWinnersService();
 
+  const [prizeData, setPrizeData] = useState<PrizeWinnersModel[]>([]);
+
   const [option, setOption] = useState<(string | undefined)[]>([]);
+  const [year, setYear] = useState<(string | undefined)[]>([]);
 
   useEffect(() => {
     fetchNoblePrizeWinnersData(() => {});
   }, []);
+
+  useEffect(() => {
+    handleFilter();
+    setPrizeData(prizeWinners);
+  }, [prizeWinners]);
+
   const handleFilter = () => {
-    const uniqueValue = prizeWinners
+    const uniqueCategory = prizeWinners
       .map((p) => p.category)
       .filter((categ, index, arr) => arr.indexOf(categ) == index)
       .sort();
+    const uniqueYear = prizeWinners
+      .map((p) => p.year)
+      .filter((year, index, arr) => arr.indexOf(year) == index)
+      .sort();
 
-    setOption(uniqueValue);
+    if (option.length === 0) setOption(uniqueCategory);
+    if (year.length === 0) setYear(uniqueYear);
   };
-  const handleChange = (value: any) => {
-    console.log(value);
-    setloading(true);
-
-    const filter = prizeWinners.filter((prize, index) => {
+  const handleCategoryChange = (value: any) => {
+    const category = prizeData.filter((prize, index) => {
       return prize.category === value;
     });
-    console.log({ filter });
+
+    setPrizeWinners(category);
+  };
+  const handleYearChange = (value: any) => {
+    console.log(value);
+    const filter = prizeData.filter((yr, index) => {
+      return yr.year == value;
+    });
+
     setPrizeWinners(filter);
-    setloading(false);
   };
 
   return (
-    <div>
+    <div className="nobel-prize-winners">
       <h1>Nobel Winners</h1>
-      <Select
-        onClick={handleFilter}
-        placeholder="select"
-        style={{ width: 120 }}
-        onChange={handleChange}
-        options={option.map((val, index) => {
-          return { label: val, value: val };
-        })}
-      ></Select>
-      <Card />
+      <div className="nobel-prize-winners__filter">
+        <span>Filter By </span>
+        <Select
+          placeholder="Category"
+          style={{ width: 120 }}
+          onChange={handleCategoryChange}
+          options={option.map((val, index) => {
+            return { label: val, value: val };
+          })}
+        ></Select>
+        <Select
+          placeholder="Year"
+          style={{ width: 120 }}
+          onChange={() => handleYearChange}
+          options={year.map((val, index) => {
+            return { label: val, value: val };
+          })}
+        ></Select>
+      </div>
+      <Card prizeWinners={prizeWinners} />
     </div>
   );
 };

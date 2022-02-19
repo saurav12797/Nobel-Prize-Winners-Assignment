@@ -4,13 +4,17 @@ import { Pagination } from "antd";
 import "antd/dist/antd.css";
 
 import NobelPrizeWinnersService from "../../../services/nobelPrizeWinners.service";
+import { PrizeWinnersModel } from "../../../Models/PrizeWinners/prizeWinners.model";
 
-export const Card = () => {
+interface CardProps {
+  prizeWinners: PrizeWinnersModel[];
+}
+export const Card = (props: CardProps) => {
+  const { prizeWinners } = props;
   const [total, setTotal] = useState<number>();
   const [page, setPage] = useState(1);
   const [prizePerPage, setPrizePerPage] = useState(10);
-  const { fetchNoblePrizeWinnersData, loading, prizeWinners } =
-    NobelPrizeWinnersService();
+  const { fetchNoblePrizeWinnersData, loading } = NobelPrizeWinnersService();
 
   useEffect(() => {
     fetchNoblePrizeWinnersData((data: number) => {

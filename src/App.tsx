@@ -12,7 +12,7 @@ function App() {
     <section className="App">
       <Navbar />
       <LandingPage />
-      <MultiNobelWinner />
+
       <NobelPrizeWinners />
     </section>
   );
