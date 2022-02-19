@@ -7,6 +7,7 @@ import { PrizeWinnersModel } from "../Models/PrizeWinners/prizeWinners.model";
 const NobelPrizeWinnersService = () => {
   const [loading, setloading] = useState(false);
   const [prizeWinners, setPrizeWinners] = useState<PrizeWinnersModel[]>([]);
+  const [prizeData, setPrizeData] = useState<PrizeWinnersModel[]>([]);
 
   const fetchNoblePrizeWinnersData = async (onSuccess: Function) => {
     setloading(true);
@@ -19,6 +20,7 @@ const NobelPrizeWinnersService = () => {
           response.data["prizes"] as PrizeWinnersModel[]
         );
         setPrizeWinners(data);
+        setPrizeData(data);
 
         if (data) onSuccess(data.length);
       }
@@ -31,6 +33,8 @@ const NobelPrizeWinnersService = () => {
     prizeWinners,
     fetchNoblePrizeWinnersData,
     setPrizeWinners,
+
+    prizeData,
     loading,
     setloading,
   };

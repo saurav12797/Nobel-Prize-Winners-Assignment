@@ -13,9 +13,8 @@ const NobelPrizeWinners = () => {
     prizeWinners,
     setPrizeWinners,
     setloading,
+    prizeData,
   } = NobelPrizeWinnersService();
-
-  const [prizeData, setPrizeData] = useState<PrizeWinnersModel[]>([]);
 
   const [option, setOption] = useState<(string | undefined)[]>([]);
   const [year, setYear] = useState<(string | undefined)[]>([]);
@@ -26,7 +25,6 @@ const NobelPrizeWinners = () => {
 
   useEffect(() => {
     handleFilter();
-    setPrizeData(prizeWinners);
   }, [prizeWinners]);
 
   const handleFilter = () => {
@@ -44,18 +42,17 @@ const NobelPrizeWinners = () => {
   };
   const handleCategoryChange = (value: any) => {
     const category = prizeData.filter((prize, index) => {
-      return prize.category === value;
+      return prize.category == value;
     });
-
     setPrizeWinners(category);
   };
   const handleYearChange = (value: any) => {
     console.log(value);
-    const filter = prizeData.filter((yr, index) => {
-      return yr.year == value;
+    const year = prizeData.filter((yr, index) => {
+      return yr.year === value;
     });
 
-    setPrizeWinners(filter);
+    setPrizeWinners(year);
   };
 
   return (
@@ -74,7 +71,7 @@ const NobelPrizeWinners = () => {
         <Select
           placeholder="Year"
           style={{ width: 120 }}
-          onChange={() => handleYearChange}
+          onChange={handleYearChange}
           options={year.map((val, index) => {
             return { label: val, value: val };
           })}
