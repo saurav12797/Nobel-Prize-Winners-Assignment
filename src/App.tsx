@@ -5,14 +5,13 @@ import { Navbar } from "./shared/components/Navbar";
 import Demo from "./views/components/Demo";
 import MultiNobelWinner from "./views/components/MultiNobelWinners";
 import NobelPrizeWinners from "./views/components/NobelPrizeWinners";
-import Prac from "./views/components/Prac";
 
 function App() {
   return (
     <section className="App">
       <Navbar />
       <LandingPage />
-
+      <MultiNobelWinner />
       <NobelPrizeWinners />
     </section>
   );

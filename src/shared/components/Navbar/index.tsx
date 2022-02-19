@@ -2,7 +2,6 @@ import React from "react";
 import { Card } from "../../../views/components/Card";
 import "./navbar.scss";
 import nobelPrizeLogo from "../../../assets/Nobel_Prize.png";
-import Prac from "../../../views/components/Prac/index";
 
 export const Navbar = () => {
   return (

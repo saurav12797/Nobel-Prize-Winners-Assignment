@@ -9,10 +9,8 @@ import "./nobel-prize-winners.scss";
 const NobelPrizeWinners = () => {
   const {
     fetchNoblePrizeWinnersData,
-    loading,
     prizeWinners,
     setPrizeWinners,
-    setloading,
     prizeData,
   } = NobelPrizeWinnersService();
 
@@ -34,8 +32,9 @@ const NobelPrizeWinners = () => {
       .sort();
     const uniqueYear = prizeWinners
       .map((p) => p.year)
-      .filter((year, index, arr) => arr.indexOf(year) == index)
-      .sort();
+      .filter((year, index, arr) =>
+        arr.indexOf(year) == index && year ? year > "1900" && year < "2018" : ""
+      );
 
     if (option.length === 0) setOption(uniqueCategory);
     if (year.length === 0) setYear(uniqueYear);
