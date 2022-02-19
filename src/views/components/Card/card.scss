@@ -13,17 +13,19 @@
   );
   display: flex;
   flex-wrap: wrap;
-  justify-content: space-between;
 
   @media (max-width: 976px) {
     justify-content: center;
   }
+  .card__container-footer {
+    color: $white;
+  }
 
   .card__container {
     padding: 1.5rem;
-    height: 22rem;
-    width: 18rem;
-    // background-color: aqua;
+    height: 24rem;
+    width: 20rem;
+
     background: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.8)),
       url("../../../assets//Nobel_Prize.png") no-repeat center center;
     margin: 2rem;
@@ -35,9 +37,21 @@
       padding: 0.5rem;
       p {
         font-style: italic;
-        opacity: 0.5;
+        opacity: 0.8;
         margin-bottom: 15px;
       }
+      h3,
+      h2 {
+        color: $text-golden;
+      }
     }
+  }
+}
+.pagination {
+  margin: 26rem 1rem 5rem 20rem;
+}
+.ant-pagination {
+  .ant-pagination-options {
+    display: none;
   }
 }

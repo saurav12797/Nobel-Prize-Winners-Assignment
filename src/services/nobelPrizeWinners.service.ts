@@ -8,18 +8,19 @@ const NobelPrizeWinnersService = () => {
   const [loading, setloading] = useState(false);
   const [prizeWinners, setPrizeWinners] = useState<PrizeWinnersModel[]>([]);
 
-  const fetchNoblePrizeWinnersData = async () => {
+  const fetchNoblePrizeWinnersData = async (onSuccess: Function) => {
     setloading(true);
 
     try {
       const response = await axios.get(ApiRoutes.BASE_URL + ApiRoutes.PRIZE);
       if (response.data) {
-        console.log(response.data);
         const data = deserialize(
           PrizeWinnersModel,
           response.data["prizes"] as PrizeWinnersModel[]
         );
         setPrizeWinners(data);
+
+        if (data) onSuccess(data.length);
       }
     } catch (error) {
     } finally {
