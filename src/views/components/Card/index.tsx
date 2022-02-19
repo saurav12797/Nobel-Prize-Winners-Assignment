@@ -1,29 +1,32 @@
 import "./card.scss";
-import React, { useState } from "react";
-
-const demoItems = ["monday", "monday", "monday", "monday", "monday"];
+import React, { useState, useEffect } from "react";
+import NobelPrizeWinnersService from "../../../services/nobelPrizeWinners.service";
 
 export const Card = () => {
-  const [update, setUpdate] = useState([...demoItems]);
+  const { fetchNoblePrizeWinnersData, loading, prizeWinners } =
+    NobelPrizeWinnersService();
 
-  const deleteItem = (id: number) => {
-    setUpdate((oldElements) => {
-      return oldElements.filter((data, index) => {
-        return index !== id;
-      });
-    });
-  };
-  console.log({ update });
+  useEffect(() => {
+    fetchNoblePrizeWinnersData();
+  }, []);
 
   return (
     <section className="card">
-      {demoItems.map((data, index) => {
+      {prizeWinners.map((winner, index) => {
         return (
           <div className="card__container" key={index}>
-            <div className="card__content">
-              <h2>{data}</h2>
-              <button onClick={() => deleteItem(index)}>Delete</button>
-            </div>
+            <h2 className="card__container-heading">LAUREATES</h2>
+            {winner?.laureates?.map((laureates, index) => {
+              return (
+                <div className="card__container-content">
+                  <p>{index === 0 ? laureates?.motivation : ""}</p>
+                  <h3 key={index}>
+                    {`${laureates?.firstName} ${laureates?.surName} `}
+                  </h3>
+                </div>
+              );
+            })}
+            <h2 className="card__container-footer">{`${winner?.category}, ${winner?.year}`}</h2>
           </div>
         );
       })}

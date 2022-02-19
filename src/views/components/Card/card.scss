@@ -1,37 +1,42 @@
 /* taken root font size as 1rem =10px */
+@import "src/styles/variables";
 .card {
+  color: $white;
   width: 100%;
-  background-color: yellow;
+  background: linear-gradient(
+    to right,
+    #bf953f,
+    #fcf6ba,
+    #b38728,
+    #fbf5b7,
+    #aa771c
+  );
   display: flex;
   flex-wrap: wrap;
+  justify-content: space-between;
 
   @media (max-width: 976px) {
     justify-content: center;
   }
 
   .card__container {
-    height: 18rem;
+    padding: 1.5rem;
+    height: 22rem;
     width: 18rem;
-    background-color: aqua;
+    // background-color: aqua;
+    background: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.8)),
+      url("../../../assets//Nobel_Prize.png") no-repeat center center;
     margin: 2rem;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-
-    .card__content {
-      button {
-        margin-top: 3rem;
-        background-color: lightcoral;
-        color: white;
-        border: none;
-        padding: 1rem;
-        border-radius: 8px;
-      }
-      button:hover {
-        background-color: white;
-        color: lightcoral;
-        cursor: pointer;
-        transition: 0.5s ease-out;
+    text-align: center;
+    .card__container-heading {
+      color: $text-golden;
+    }
+    .card__container-content {
+      padding: 0.5rem;
+      p {
+        font-style: italic;
+        opacity: 0.5;
+        margin-bottom: 15px;
       }
     }
   }
