@@ -1,0 +1,15 @@
+{
+  "files": {
+    "main.css": "/Nobel-Prize-Winners-Assignment/static/css/main.02ea46ee.css",
+    "main.js": "/Nobel-Prize-Winners-Assignment/static/js/main.e842f81c.js",
+    "static/media/Nobel_Prize.png": "/Nobel-Prize-Winners-Assignment/static/media/Nobel_Prize.67a956416300e1510022.png",
+    "static/media/banner.jpg": "/Nobel-Prize-Winners-Assignment/static/media/banner.6b26ad9e67123700e676.jpg",
+    "index.html": "/Nobel-Prize-Winners-Assignment/index.html",
+    "main.02ea46ee.css.map": "/Nobel-Prize-Winners-Assignment/static/css/main.02ea46ee.css.map",
+    "main.e842f81c.js.map": "/Nobel-Prize-Winners-Assignment/static/js/main.e842f81c.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.02ea46ee.css",
+    "static/js/main.e842f81c.js"
+  ]
+}
